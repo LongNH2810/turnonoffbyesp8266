@@ -88,6 +88,41 @@
       border-radius: 50%;
       padding: 10px;
     }
+/* Popup toàn màn hình */
+#settingsPopup {
+  display: none; /* Mặc định ẩn */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Nội dung popup */
+#popupContent {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+}
+
+/* Nút back */
+#backButton {
+  display: block;
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  background: gray;
+  color: white;
+  border: none;
+  font-size: 20px;
+}    
 
     /* Media queries cho điện thoại */
     @media (max-width: 600px) {
@@ -128,10 +163,42 @@
     <!-- Nút điều khiển -->
     <button id="controlButton" class="off" onclick="updateStatus()">Loading</button>
   </div>
-
+<!-- Popup -->
+  <div id="settingsPopup">
+    <div id="popupContent">
+      <input type="number" id="temperatureInput" placeholder="Nhập nhiệt độ" />
+      <button onclick="updateTemperature()">Cập nhật</button>
+      <button id="backButton" onclick="closePopup()">←</button>
+  </div>
+</div>
+  
   <script>
     function openSettings() {
-      alert("Open settings menu");
+      document.getElementById("settingsPopup").style.display = "flex";
+    }
+    
+    function closePopup() {
+      document.getElementById("settingsPopup").style.display = "none";
+    }
+    
+    function updateTemperature() {
+      let temperature = document.getElementById("temperatureInput").value;
+      if (temperature === "") {
+        alert("Vui lòng nhập nhiệt độ!");
+        return;
+      }
+    
+      let apiUrl = `https://abc.link?temperature=${temperature}`;
+      fetch(apiUrl)
+        .then(response => response.text())
+        .then(data => {
+          alert("Cập nhật thành công: " + data);
+          closePopup();
+        })
+        .catch(error => {
+          console.error("Lỗi khi cập nhật:", error);
+          alert("Lỗi khi cập nhật!");
+        });
     }
 
     function getStatus() {
