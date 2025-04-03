@@ -13,6 +13,7 @@
       justify-content: center;
       align-items: center;
       background-color: #f8f9fa;
+      flex-direction: column;
     }
 
     #controlContainer {
@@ -20,33 +21,37 @@
       flex-direction: column;
       align-items: center;
       gap: 20px; /* Khoảng cách giữa các phần tử */
+      width: 90%;
+      max-width: 500px;
     }
 
     /* Ô hiển thị nhiệt độ */
     #temperatureDisplay {
-      font-size: 180px;
-      font-family:arial;
+      font-size: 10vw; /* Responsive font size */
+      font-family: Arial, sans-serif;
       font-weight: bold;
       color: #333;
+      text-align: center;
       background-color: transparent;
       border-radius: 15px;
       width: 100%;
-      text-align: center;
-      margin-top: 30%;
+      margin-top: 5vh;
     }
 
     /* Định dạng nút */
     #controlButton {
-      padding: 20px;
-      font-size: 56px;
+      padding: 10px;
+      font-size: 5vw; /* Responsive font size */
       border: none;
       cursor: pointer;
       border-radius: 50%;
       outline: none;
-      width: 350px;
-      height: 350px;
+      width: 50vw; /* Responsive size */
+      max-width: 350px;
+      height: 50vw;
+      max-height: 350px;
       text-align: center;
-      margin-top:35%;
+      margin-top: 5vh;
     }
 
     /* Trạng thái nút */
@@ -68,19 +73,34 @@
     /* Nút settings */
     #settingsButton {
       position: absolute;
-      top: 5%;
+      top: 2vh;
       right: 5%;
       border: none;
       cursor: pointer;
       background: none;
       color: #6c757d;
-      font-size: 50px;
+      font-size: 6vw;
     }
 
     #settingsButton i {
-      border: 5px solid #6c757d;
+      border: 3px solid #6c757d;
       border-radius: 50%;
-      padding: 20px;
+      padding: 10px;
+    }
+
+    /* Media queries cho điện thoại */
+    @media (max-width: 600px) {
+      #controlContainer {
+        width: 100%;
+      }
+      #temperatureDisplay {
+        font-size: 12vw;
+      }
+      #controlButton {
+        width: 60vw;
+        height: 60vw;
+        font-size: 6vw;
+      }
     }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
