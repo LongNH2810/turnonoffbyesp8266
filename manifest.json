@@ -1,7 +1,8 @@
 {
   "name": "Control Button",
   "short_name": "ControlBtn",
-  "start_url": "turnonoffbyesp8266",
+  "start_url": "/turnonoffbyesp8266/",
+  "scope": "/turnonoffbyesp8266/",
   "display": "standalone",
   "background_color": "#f8f9fa",
   "theme_color": "#007bff",
