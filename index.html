@@ -1,12 +1,150 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang GitHub Pages</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control Button</title>
+  <style>
+    /* Định dạng tổng thể */
+    body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f8f9fa;
+    }
+
+    #controlContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px; /* Khoảng cách giữa các phần tử */
+    }
+
+    /* Ô hiển thị nhiệt độ */
+    #temperatureDisplay {
+      font-size: 180px;
+      font-family:arial;
+      font-weight: bold;
+      color: #333;
+      background-color: transparent;
+      border-radius: 15px;
+      width: 100%;
+      text-align: center;
+      margin-top: 30%;
+    }
+
+    /* Định dạng nút */
+    #controlButton {
+      padding: 20px;
+      font-size: 56px;
+      border: none;
+      cursor: pointer;
+      border-radius: 50%;
+      outline: none;
+      width: 350px;
+      height: 350px;
+      text-align: center;
+      margin-top:35%;
+    }
+
+    /* Trạng thái nút */
+    .on {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .off {
+      background-color: #6c757d;
+      color: white;
+    }
+
+    .loading {
+      background-color: #3f6fb8;
+      color: white;
+    }
+
+    /* Nút settings */
+    #settingsButton {
+      position: absolute;
+      top: 5%;
+      right: 5%;
+      border: none;
+      cursor: pointer;
+      background: none;
+      color: #6c757d;
+      font-size: 50px;
+    }
+
+    #settingsButton i {
+      border: 5px solid #6c757d;
+      border-radius: 50%;
+      padding: 20px;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
 </head>
 <body>
-    <h1>Xin chào!</h1>
-    <p>Đây là trang web đầu tiên của bạn trên GitHub Pages.</p>
+
+  <!-- Nút Settings -->
+  <button id="settingsButton" onclick="openSettings()">
+    <i class="fas fa-cog"></i>
+  </button>
+
+  <div id="controlContainer">
+    <!-- Ô hiển thị nhiệt độ -->
+    <div id="temperatureDisplay">23.05°C</div>
+
+    <!-- Nút điều khiển -->
+    <button id="controlButton" class="off" onclick="updateStatus()">Loading</button>
+  </div>
+
+  <script>
+    function openSettings() {
+      alert("Open settings menu");
+    }
+
+    function getStatus() {
+      var controlButton = document.getElementById('controlButton');
+      const url = 'https://script.google.com/macros/s/AKfycbx0bFjcH7TQPXZoMW6rfcXWzO9tMgvPJUbmbzTY-cqQfLlsAfStZqIJNpCyEtNh0wi5nQ/exec?action=get'; 
+      controlButton.disabled = true;
+      controlButton.className = 'loading';
+      controlButton.textContent = 'Loading';
+      fetch(url)
+        .then(response => response.text())
+        .then(data => {
+          controlButton.className = data;
+          controlButton.textContent = data.toUpperCase();
+          controlButton.disabled = false;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Error when connecting');
+        });
+    }
+
+    function updateStatus() {
+      var controlButton = document.getElementById('controlButton');
+      const url = 'https://script.google.com/macros/s/AKfycbx0bFjcH7TQPXZoMW6rfcXWzO9tMgvPJUbmbzTY-cqQfLlsAfStZqIJNpCyEtNh0wi5nQ/exec?action=update'; 
+      controlButton.disabled = true;
+      controlButton.className = 'loading';
+      controlButton.textContent = 'Loading';
+      fetch(url)
+        .then(response => response.text())
+        .then(() => {
+          getStatus();
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Error when pressing');
+        });
+    }
+
+    window.onload = function() {
+      getStatus();
+    }
+  </script>
+
 </body>
 </html>
