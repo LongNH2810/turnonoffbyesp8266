@@ -314,7 +314,8 @@ button {
           // Cập nhật giá trị vào ô nhập liệu
           if (temperatureInput.value !== tempMark && tempMark !== 'N/A') {
             temperatureInput.value = tempMark;
-          }          
+          }  
+          controlButton.disabled = false;
         })
         .catch(error => {
           console.error('Error:', error);
