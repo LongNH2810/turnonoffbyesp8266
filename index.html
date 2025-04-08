@@ -6,96 +6,96 @@
   <title>Control Button</title>
   <style>
     /* Định dạng tổng thể */
-    body, html {
-      height: 100%;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #f8f9fa;
-      flex-direction: column;
-    }
+    /* Định dạng tổng thể */
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+  flex-direction: column;
+}
 
-    #controlContainer {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px; /* Khoảng cách giữa các phần tử */
-      width: 90%;
-      max-width: 500px;
-    }
+#controlContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* Khoảng cách giữa các phần tử */
+  width: 90%;
+  max-width: 500px;
+}
 
-    /* Ô hiển thị nhiệt độ */
-    #temperatureDisplay {
-      font-size: 10vw; /* Responsive font size */
-      font-family: Arial, sans-serif;
-      font-weight: bold;
-      color: #333;
-      text-align: center;
-      background-color: transparent;
-      border-radius: 15px;
-      width: 100%;
-      margin-bottom: 30vh;
-    }
+/* Ô hiển thị nhiệt độ */
+#temperatureDisplay {
+  font-size: 10vw; /* Responsive font size */
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  background-color: transparent;
+  border-radius: 15px;
+  width: 100%;
+  margin-bottom: 30vh;
+}
 
-    /* Định dạng nút */
-    #controlButton {
-      padding: 10px;
-      font-size: 5vw; /* Responsive font size */
-      border: none;
-      cursor: pointer;
-      border-radius: 50%;
-      outline: none;
-      width: 50vw; /* Responsive size */
-      max-width: 350px;
-      height: 50vw;
-      max-height: 350px;
-      text-align: center;
-      position: absolute;
-      bottom: 20vh;
-    }
+/* Định dạng nút */
+#controlButton {
+  padding: 10px;
+  font-size: 5vw; /* Responsive font size */
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  outline: none;
+  width: 50vw; /* Responsive size */
+  max-width: 350px;
+  height: 50vw;
+  max-height: 350px;
+  text-align: center;
+  position: absolute;
+  bottom: 20vh;
+}
 
-    /* Trạng thái nút */
-    .on {
-      background-color: #007bff;
-      color: white;
-    }
+/* Trạng thái nút */
+.on {
+  background-color: #007bff;
+  color: white;
+}
 
-    .off {
-      background-color: #6c757d;
-      color: white;
-    }
-   .auto {
-      background-color: #499a49;
-      color: white;   
-   }
+.off {
+  background-color: #6c757d;
+  color: white;
+}
 
+.auto {
+  background-color: #499a49;
+  color: white;
+}
 
+.loading {
+  background-color: #3f6fb8;
+  color: white;
+}
 
-    .loading {
-      background-color: #3f6fb8;
-      color: white;
-    }
+/* Nút settings */
+#settingsButton {
+  position: absolute;
+  top: 5vh;
+  right: -10vh;
+  border: none;
+  cursor: pointer;
+  background: none;
+  color: #6c757d;
+  font-size: 6vw;
+}
 
-    /* Nút settings */
-    #settingsButton {
-      position: absolute;
-      top: 5vh;
-      right: -10vh;
-      border: none;
-      cursor: pointer;
-      background: none;
-      color: #6c757d;
-      font-size: 6vw;
-    }
+#settingsButton i {
+  border: 3px solid #6c757d;
+  border-radius: 50%;
+  padding: 10px;
+}
 
-    #settingsButton i {
-      border: 3px solid #6c757d;
-      border-radius: 50%;
-      padding: 10px;
-    }
 /* Popup toàn màn hình */
-/* Định dạng cho popup */
 #settingsPopup {
   display: none; /* Mặc định ẩn */
   position: fixed;
@@ -119,8 +119,8 @@
   height: 60%; /* Chiều cao của popup */
   max-width: 400px;
   display: flex;
-  flex-direction: column; /* Chia thành các dòng */
-  gap: 0; /* Không cần khoảng cách giữa các dòng */
+  flex-direction: column;
+  gap: 0;
 }
 
 /* Định dạng cho từng dòng trong popup */
@@ -129,12 +129,12 @@
   display: flex;
   justify-content: center; /* Căn giữa theo chiều ngang */
   align-items: center; /* Căn giữa theo chiều dọc */
-  width: 100%;  /* Đảm bảo mỗi dòng chiếm toàn bộ chiều rộng */
+  width: 100%;
 }
 
 /* Tiêu đề Setting */
 .settingLabel {
-  font-family:arial;
+  font-family: Arial;
   font-size: 52px;
   font-weight: bold;
   color: #333;
@@ -142,20 +142,20 @@
 
 /* Tiêu đề Temperature Mark */
 .tempMark {
-    font-size: 24px;
-    color: #333;
-    margin-top: 10px;
-    padding-right: 10px;
+  font-size: 24px;
+  color: #333;
+  margin-top: 10px;
+  padding-right: 10px;
 }
 
 /* Ô nhập liệu */
 #temperatureInput {
-    width: 16%;
-    padding: 10px;
-    font-size: 18px;
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  width: 60%;
+  padding: 10px;
+  font-size: 18px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 /* Nút Update */
@@ -185,35 +185,51 @@ button {
   border-radius: 5px;
 }
 
-
 #updateSettingButton {
-    width: 50%;
-    max-width: 300px;
-    padding: 15px;
-    font-size: 20px;
-    border: none;
-    cursor: pointer;
-    background: #007bff;
-    color: white;
-    margin-bottom: 10px;
-    border-radius: 5px;
+  width: 50%;
+  max-width: 300px;
+  padding: 15px;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  background: #007bff;
+  color: white;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
-   
 
-    /* Media queries cho điện thoại */
-    @media (max-width: 600px) {
-      #controlContainer {
-        width: 100%;
-      }
-      #temperatureDisplay {
-        font-size: 12vw;
-      }
-      #controlButton {
-        width: 40vw;
-        height: 40vw;
-        font-size: 6vw;
-      }
-    }
+/* Media queries cho điện thoại */
+@media (max-width: 600px) {
+  #controlContainer {
+    width: 100%;
+  }
+  #temperatureDisplay {
+    font-size: 12vw;
+  }
+  #controlButton {
+    width: 40vw;
+    height: 40vw;
+    font-size: 6vw;
+  }
+
+  #settingsPopup {
+    padding: 10px;
+  }
+  #popupContent {
+    width: 90%;
+    height: 80%;
+    padding: 10px;
+  }
+  .settingLabel {
+    font-size: 36px;
+  }
+  .tempMark {
+    font-size: 18px;
+  }
+  #temperatureInput {
+    width: 80%;
+  }
+}
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
   <link rel="manifest" href="/turnonoffbyesp8266/manifest.json">
