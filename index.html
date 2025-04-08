@@ -95,6 +95,7 @@
       padding: 10px;
     }
 /* Popup toàn màn hình */
+/* Định dạng cho popup */
 #settingsPopup {
   display: none; /* Mặc định ẩn */
   position: fixed;
@@ -115,12 +116,47 @@
   border-radius: 10px;
   text-align: center;
   width: 80%;
-  height: 60%;
+  height: 60%; /* Chiều cao của popup */
   max-width: 400px;
+  display: flex;
+  flex-direction: column; /* Chia thành các dòng */
+  gap: 0; /* Không cần khoảng cách giữa các dòng */
 }
 
-/* Nút cập nhật */
-#updateButton {
+/* Định dạng cho từng dòng trong popup */
+.popupLine {
+  height: 25%;  /* Mỗi dòng chiếm 1/4 chiều cao của popup */
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  width: 100%;  /* Đảm bảo mỗi dòng chiếm toàn bộ chiều rộng */
+}
+
+/* Tiêu đề Setting */
+.settingLabel {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Tiêu đề Temperature Mark */
+.tempMark {
+  font-size: 20px;
+  color: #333;
+}
+
+/* Ô nhập liệu */
+#temperatureInput {
+  width: 80%;
+  padding: 10px;
+  font-size: 18px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Nút Update */
+button {
   width: 80%;
   max-width: 300px;
   padding: 15px;
@@ -129,20 +165,24 @@
   cursor: pointer;
   background: #007bff;
   color: white;
-  margin-bottom: auto; /* Đẩy nút Update xuống */
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
 
-/* Nút back */
+/* Nút Back */
 #backButton {
   display: block;
-  margin-top: 20px;
   width: 100%;
   padding: 10px;
   background: transparent;
   color: gray;
   border: none;
   font-size: 20px;
-}    
+  text-align: center;
+  border-radius: 5px;
+}
+
+   
 
     /* Media queries cho điện thoại */
     @media (max-width: 600px) {
@@ -156,13 +196,6 @@
         width: 40vw;
         height: 40vw;
         font-size: 6vw;
-      }
-      .settingLabel {
-        font-size: 12vw;
-      }
-
-      .tempMark {
-        font-size: 12vw;
       }
     }
   </style>
@@ -191,13 +224,28 @@
     <button id="controlButton" class="off" onclick="updateStatus()">Loading</button>
   </div>
 <!-- Popup -->
-  <div id="settingsPopup">
-    <div id="popupContent">
-      <span class="settingLabel">Setting<span>
-      <span class="tempMark">Temperature Mark<span>  
+<div id="settingsPopup">
+  <div id="popupContent">
+    <!-- Dòng 1: Tiêu đề "Setting" -->
+    <div class="popupLine">
+      <span class="settingLabel">Setting</span>
+    </div>
+    
+    <!-- Dòng 2: Tiêu đề "Temperature Mark" và ô nhập liệu -->
+    <div class="popupLine">
+      <span class="tempMark">Temperature Mark</span>
       <input type="number" id="temperatureInput" placeholder="Nhập nhiệt độ" />
+    </div>
+    
+    <!-- Dòng 3: Nút "Update" -->
+    <div class="popupLine">
       <button onclick="updateTemperatureSetting()">Update</button>
-      <button id="backButton" onclick="closePopup()">←</button>
+    </div>
+
+    <!-- Dòng 4: Nút "Back" -->
+    <div class="popupLine">
+      <button id="backButton" onclick="closePopup()">← Back</button>
+    </div>
   </div>
 </div>
   
