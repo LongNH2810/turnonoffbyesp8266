@@ -81,7 +81,7 @@
     #settingsButton {
       position: absolute;
       top: 5vh;
-      right: 2.5vh;
+      right: -10vh;
       border: none;
       cursor: pointer;
       background: none;
@@ -134,25 +134,28 @@
 
 /* Tiêu đề Setting */
 .settingLabel {
-  font-size: 24px;
+  font-family:arial;
+  font-size: 52px;
   font-weight: bold;
   color: #333;
 }
 
 /* Tiêu đề Temperature Mark */
 .tempMark {
-  font-size: 20px;
-  color: #333;
+    font-size: 24px;
+    color: #333;
+    margin-top: 10px;
+    padding-right: 10px;
 }
 
 /* Ô nhập liệu */
 #temperatureInput {
-  width: 80%;
-  padding: 10px;
-  font-size: 18px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+    width: 16%;
+    padding: 10px;
+    font-size: 18px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 /* Nút Update */
@@ -182,6 +185,19 @@ button {
   border-radius: 5px;
 }
 
+
+#updateSettingButton {
+    width: 50%;
+    max-width: 300px;
+    padding: 15px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    background: #007bff;
+    color: white;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
    
 
     /* Media queries cho điện thoại */
@@ -239,7 +255,7 @@ button {
     
     <!-- Dòng 3: Nút "Update" -->
     <div class="popupLine">
-      <button onclick="updateTemperatureSetting()">Update</button>
+      <button id="updateSettingButton" onclick="updateTemperatureSetting()">Update</button>
     </div>
 
     <!-- Dòng 4: Nút "Back" -->
