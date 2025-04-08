@@ -223,22 +223,30 @@
 
     function getStatus() {
       var controlButton = document.getElementById('controlButton');
-      const url = 'https://script.google.com/macros/s/AKfycbx0bFjcH7TQPXZoMW6rfcXWzO9tMgvPJUbmbzTY-cqQfLlsAfStZqIJNpCyEtNh0wi5nQ/exec?action=get'; 
+      var temperatureDisplay = document.getElementById('temperatureDisplay');
+      const url = 'https://script.google.com/macros/s/AKfycbx0bFjcH7TQPXZoMW6rfcXWzO9tMgvPJUbmbzTY-cqQfLlsAfStZqIJNpCyEtNh0wi5nQ/exec';
       controlButton.disabled = true;
       controlButton.className = 'loading';
       controlButton.textContent = 'Loading';
       fetch(url)
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => {
-          controlButton.className = data;
-          controlButton.textContent = data.toUpperCase();
+          const state = data.state || 'off';
+          const temp = data.currentTemp || 'N/A';
+    
+          // Cập nhật button
+          controlButton.className = state;
+          controlButton.textContent = state.toUpperCase();
           controlButton.disabled = false;
+    
+          // Cập nhật hiển thị nhiệt độ
+          temperatureDisplay.textContent = temp + "°C";
         })
         .catch(error => {
           console.error('Error:', error);
           alert('Error when connecting');
         });
-    }
+      }
 
     function updateStatus() {
       var controlButton = document.getElementById('controlButton');
