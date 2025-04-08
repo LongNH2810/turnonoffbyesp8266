@@ -258,12 +258,21 @@ button {
 </div>
   
   <script>
+    let syncInterval = null; 
+    
     function openSettings() {
       document.getElementById("settingsPopup").style.display = "flex";
+      if (syncInterval) {
+        clearInterval(syncInterval); // ⛔ Dừng đồng bộ
+        syncInterval = null;
+      }
     }
     
     function closePopup() {
       document.getElementById("settingsPopup").style.display = "none";
+      if (!syncInterval) {
+        syncInterval = setInterval(sync, 5000); // ✅ Bật lại đồng bộ
+      }
     }
     
     function updateTemperatureSetting() {
@@ -381,7 +390,7 @@ button {
     window.onload = function() {
       document.getElementById("settingsPopup").style.display = "none";
       getStatus();
-      setInterval(sync, 5000);
+      syncInterval = setInterval(sync, 5000); // Gán cho biến toàn cục
     }
   </script>
 
