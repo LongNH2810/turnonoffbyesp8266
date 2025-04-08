@@ -157,6 +157,13 @@
         height: 40vw;
         font-size: 6vw;
       }
+      .settingLabel {
+        font-size: 12vw;
+      }
+
+      .tempMark {
+        font-size: 12vw;
+      }
     }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
@@ -186,8 +193,10 @@
 <!-- Popup -->
   <div id="settingsPopup">
     <div id="popupContent">
+      <span class="settingLabel">Setting<span>
+      <span class="tempMark">Temperature Mark<span>  
       <input type="number" id="temperatureInput" placeholder="Nhập nhiệt độ" />
-      <button onclick="updateTemperature()">Cập nhật</button>
+      <button onclick="updateTemperatureSetting()">Update</button>
       <button id="backButton" onclick="closePopup()">←</button>
   </div>
 </div>
@@ -201,7 +210,7 @@
       document.getElementById("settingsPopup").style.display = "none";
     }
     
-    function updateTemperature() {
+    function updateTemperatureSetting() {
       let temperature = document.getElementById("temperatureInput").value;
       if (temperature === "") {
         alert("Vui lòng nhập nhiệt độ!");
