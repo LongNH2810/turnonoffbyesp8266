@@ -239,14 +239,45 @@
           controlButton.textContent = state.toUpperCase();
           controlButton.disabled = false;
     
-          // Cập nhật hiển thị nhiệt độ
-          temperatureDisplay.textContent = temp + "°C";
+          // Cập nhật hiển thị nhiệt độ, nếu là "N/A" thì không thêm "°C"
+          if (temperatureDisplay.textContent !== (temp === 'N/A' ? temp : temp + "°C")) {
+            temperatureDisplay.textContent = (temp === 'N/A' ? temp : temp + "°C");
+          }
         })
         .catch(error => {
           console.error('Error:', error);
           alert('Error when connecting');
         });
       }
+
+    function sync() {
+      var controlButton = document.getElementById('controlButton');
+      var temperatureDisplay = document.getElementById('temperatureDisplay');
+    
+      const url = 'https://script.google.com/macros/s/AKfycbx0bFjcH7TQPXZoMW6rfcXWzO9tMgvPJUbmbzTY-cqQfLlsAfStZqIJNpCyEtNh0wi5nQ/exec?action=get';
+    
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const state = data.state || 'off';
+          const temp = data.currentTemp || 'N/A';
+    
+          // Cập nhật trạng thái của nút (chỉ cập nhật class và text mà không làm loading)
+          if (controlButton.className !== state) {
+            controlButton.className = state;
+            controlButton.textContent = state.toUpperCase();
+          }
+    
+          // Cập nhật hiển thị nhiệt độ, nếu là "N/A" thì không thêm "°C"
+          if (temperatureDisplay.textContent !== (temp === 'N/A' ? temp : temp + "°C")) {
+            temperatureDisplay.textContent = (temp === 'N/A' ? temp : temp + "°C");
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Error when connecting');
+        });
+    }    
 
     function updateStatus() {
       var controlButton = document.getElementById('controlButton');
@@ -268,6 +299,7 @@
     window.onload = function() {
       document.getElementById("settingsPopup").style.display = "none";
       getStatus();
+      setInterval(sync, 5000);
     }
   </script>
 
