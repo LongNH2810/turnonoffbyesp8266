@@ -373,6 +373,7 @@ button {
         .catch(error => {
           console.error('Error:', error);
           alert('Error when pressing');
+          controlButton.disabled = false;
         });
     }
 
