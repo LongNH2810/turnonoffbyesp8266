@@ -151,7 +151,7 @@ body, html {
 
 /* Ô nhập liệu */
 #temperatureInput {
-  width: 25%;
+  width: 20%;
   padding: 10px;
   font-size: 24px;
   margin-top: 10px;
@@ -288,6 +288,7 @@ button {
     function getStatus() {
       var controlButton = document.getElementById('controlButton');
       var temperatureDisplay = document.getElementById('temperatureDisplay');
+      var temperatureInput = document.getElementById('temperatureInput'); // Lấy tham chiếu đến ô nhập liệu      
       const url = 'https://script.google.com/macros/s/AKfycbx0bFjcH7TQPXZoMW6rfcXWzO9tMgvPJUbmbzTY-cqQfLlsAfStZqIJNpCyEtNh0wi5nQ/exec?action=get';
       controlButton.disabled = true;
       controlButton.className = 'loading';
@@ -307,6 +308,11 @@ button {
           if (temperatureDisplay.textContent !== (temp === 'N/A' ? temp : temp + "°C")) {
             temperatureDisplay.textContent = (temp === 'N/A' ? temp : temp + "°C");
           }
+
+          // Cập nhật giá trị vào ô nhập liệu
+          if (temperatureInput.value !== temp && temp !== 'N/A') {
+            temperatureInput.value = temp;
+          }                    
         })
         .catch(error => {
           console.error('Error:', error);
@@ -317,7 +323,8 @@ button {
     function sync() {
       var controlButton = document.getElementById('controlButton');
       var temperatureDisplay = document.getElementById('temperatureDisplay');
-    
+      var temperatureInput = document.getElementById('temperatureInput'); // Lấy tham chiếu đến ô nhập liệu
+      
       const url = 'https://script.google.com/macros/s/AKfycbx0bFjcH7TQPXZoMW6rfcXWzO9tMgvPJUbmbzTY-cqQfLlsAfStZqIJNpCyEtNh0wi5nQ/exec?action=get';
     
       fetch(url)
@@ -336,6 +343,11 @@ button {
           if (temperatureDisplay.textContent !== (temp === 'N/A' ? temp : temp + "°C")) {
             temperatureDisplay.textContent = (temp === 'N/A' ? temp : temp + "°C");
           }
+    
+          // Cập nhật giá trị vào ô nhập liệu
+          if (temperatureInput.value !== temp && temp !== 'N/A') {
+            temperatureInput.value = temp;
+          }          
         })
         .catch(error => {
           console.error('Error:', error);
